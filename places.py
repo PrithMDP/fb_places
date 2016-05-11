@@ -1,6 +1,6 @@
 # Script to find all places a users friends have checked-in at on facebook
 #
-
+import json
 from bs4 import BeautifulSoup
 import requests
 from selenium import webdriver
@@ -11,7 +11,12 @@ from selenium.webdriver.common.keys import Keys
 from sets import Set
 
 import time
-
+#import pwd from things.json
+pwd = ""
+with open('things.json') as json_data:
+    d = json.load(json_data)
+    pwd = d["password"]
+#pwd set
 
 # Set of friends
 friend_urls = Set([])
@@ -28,7 +33,7 @@ elem = driver.find_element_by_id("email")
 elem.send_keys("pythontestforme@gmail.com")
 elem = driver.find_element_by_id("pass")
 # set pwd here
-elem.send_keys("")
+elem.send_keys(pwd)
 
 #go to profile page for user
 driver.get("http://www.facebook.com/profile.php")
